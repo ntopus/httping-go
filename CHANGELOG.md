@@ -104,3 +104,7 @@ continue the request for the `HandleFunc`
 ## 0.12.0
 
 * Fixing go mod
+
+## 0.13.0
+
+* Fixing go mod
