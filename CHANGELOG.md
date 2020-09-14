@@ -108,3 +108,39 @@ continue the request for the `HandleFunc`
 ## 0.13.0
 
 * Fixing go mod
+
+## 0.14.0
+
+* IResponse implemented on the HandleFunc. It was only possible to reply JSend messages, now on, it is possible to
+return anything that implements `IResponse` interface, which means anything besides JSend.
+* `EnableCORS()` now on is a method on the `IServer`. To enable CORS it is only needed to call the method.
+* Helpers for responses. **Status**: 
+    * ProxyAuthRequired
+    * RequestTimeout
+    * Conflict
+    * Gone
+    * LengthRequired
+    * PreconditionFailed
+    * RequestEntityTooLarge
+    * RequestURITooLong
+    * UnsupportedMediaType
+    * RequestedRangeNotSatisfiable
+    * ExpectationFailed
+    * Teapot
+    * MisdirectedRequest
+    * UnprocessableEntity
+    * Locked
+    * FailedDependency
+    * TooEarly
+    * UpgradeRequired
+    * PreconditionRequired
+    * TooManyRequests
+    * RequestHeaderFieldsTooLarge
+    * UnavailableForLegalReasons
+    * NonAuthoritativeInfo
+    * ResetContent
+    * PartialContent
+    * MultiStatus
+    * AlreadyReported
+    * IMUsed
+* Go doc support
