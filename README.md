@@ -1,6 +1,6 @@
 # Httping go
 
-[![Release](https://img.shields.io/badge/release-0.14.2-blue)](https://github.com/ntopus/httping-go/releases)
+[![Release](https://img.shields.io/badge/release-0.14.0-blue)](https://github.com/ntopus/httping-go/releases)
 ![Coverage](https://img.shields.io/badge/coverage-98%25-success)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![GoDoc](https://img.shields.io/badge/godoc-reference-9cf)](https://godoc.org/github.com/ntopus/httping-go)
