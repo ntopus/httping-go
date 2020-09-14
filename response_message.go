@@ -20,6 +20,7 @@ const (
 	StatusFail    ResponseStatus = "fail"
 )
 
+// JSend helper. It follows all rules of JSend.
 func NewResponse(statusCode int) *ResponseMessage {
 	switch {
 	case statusCode >= http.StatusInternalServerError:
@@ -69,14 +70,18 @@ func (r *ResponseMessage) SetCookies(cookies []*http.Cookie) *ResponseMessage {
 	return r
 }
 
-func (r *ResponseMessage) GetStatusCode() int {
+func (r *ResponseMessage) StatusCode() int {
 	return r.statusCode
 }
 
-func (r *ResponseMessage) GetCookies() []*http.Cookie {
+func (r *ResponseMessage) Cookies() []*http.Cookie {
 	return r.cookies
 }
 
-func (r *ResponseMessage) GetHeaders() map[string][]string {
+func (r *ResponseMessage) Headers() map[string][]string {
 	return r.headers
+}
+
+func (r *ResponseMessage) Response() interface{} {
+	return r
 }

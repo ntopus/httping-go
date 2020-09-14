@@ -7,13 +7,14 @@ import (
 	"strings"
 )
 
-type HandlerFunc func(request HttpRequest) (response *ResponseMessage)
+type HandlerFunc func(request HttpRequest) (response IResponse)
 
 type route struct {
 	route      *gin.RouterGroup
 	middleware []HandlerFunc
 }
 
+// Add a HandlerFunc that it will run every time that your server receives a request in the route with the method set up.
 func (r *route) AddMethod(method string, handler HandlerFunc) {
 	method = strings.ToUpper(method)
 	switch method {
@@ -103,7 +104,7 @@ func (r *route) getHandleFunc(handle HandlerFunc) func(c *gin.Context) {
 						Cookies: c.Request.Cookies(),
 					})
 					if message != nil {
-						c.JSON(message.statusCode, message)
+						c.JSON(message.StatusCode(), message.Response())
 						return
 					}
 				}
@@ -117,15 +118,15 @@ func (r *route) getHandleFunc(handle HandlerFunc) func(c *gin.Context) {
 			Cookies: c.Request.Cookies(),
 		})
 		if message != nil {
-			for k, v := range message.headers {
+			for k, v := range message.Headers() {
 				for _, h := range v {
 					c.Writer.Header().Add(k, h)
 				}
 			}
-			for _, v := range message.cookies {
+			for _, v := range message.Cookies() {
 				c.SetCookie(v.Name, v.Value, v.MaxAge, v.Path, v.Domain, v.Secure, v.HttpOnly)
 			}
-			c.JSON(message.statusCode, message)
+			c.JSON(message.StatusCode(), message.Response())
 			return
 		}
 		c.JSON(http.StatusOK, nil)
